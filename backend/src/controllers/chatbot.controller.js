@@ -24,21 +24,41 @@ dari instansi, supaya chatbot bisa menjawab pertanyaan seputar itu juga.
 // sama sekali), sehingga chatbot kehilangan konteks. Karena jumlah data kita
 // masih kecil (puluhan baris), mengirim semuanya sekaligus jauh lebih aman
 // dan tidak melebihi batas gratis Gemini API.
+//
+// OPTIMASI KECEPATAN:
+// 1. Kedua query database dijalankan BARENGAN (Promise.all), bukan satu-satu
+//    berurutan -- ini bisa memangkas waktu tunggu database sampai separuhnya.
+// 2. Hasilnya di-cache di memori server selama 60 detik. Data jadwal aspal &
+//    paket kontrak jarang berubah tiap detik, jadi kalau ada beberapa
+//    pertanyaan chatbot dalam waktu berdekatan (termasuk saat orang yang sama
+//    tanya-jawab berkali-kali), server tidak perlu query ulang ke database
+//    setiap kali -- langsung pakai hasil cache yang tersimpan.
+let contextCache = { text: null, expiresAt: 0 };
+
 async function buildContext() {
-  let context = STATIC_CONTEXT + '\n\n';
+  const now = Date.now();
+  if (contextCache.text && contextCache.expiresAt > now) {
+    return contextCache.text;
+  }
 
-  const { data: jadwal } = await supabase
-    .from('jadwal_aspal')
-    .select('nama_paket, tanggal_mulai, tanggal_selesai, status, lokasi_maps_url')
-    .order('tanggal_mulai', { ascending: false })
-    .limit(40);
-  context += 'DATA JADWAL GELARAN ASPAL:\n' + JSON.stringify(jadwal, null, 2) + '\n\n';
+  const [{ data: jadwal }, { data: paket }] = await Promise.all([
+    supabase
+      .from('jadwal_aspal')
+      .select('nama_paket, tanggal_mulai, tanggal_selesai, status, lokasi_maps_url')
+      .order('tanggal_mulai', { ascending: false })
+      .limit(40),
+    supabase
+      .from('paket_kontrak')
+      .select('nama_paket, kategori, lokasi, status, tahun')
+      .limit(100)
+  ]);
 
-  const { data: paket } = await supabase
-    .from('paket_kontrak')
-    .select('nama_paket, kategori, lokasi, status, tahun')
-    .limit(100);
-  context += 'DATA PAKET KONTRAK BINA MARGA:\n' + JSON.stringify(paket, null, 2) + '\n\n';
+  const context =
+    STATIC_CONTEXT + '\n\n' +
+    'DATA JADWAL GELARAN ASPAL:\n' + JSON.stringify(jadwal, null, 2) + '\n\n' +
+    'DATA PAKET KONTRAK BINA MARGA:\n' + JSON.stringify(paket, null, 2) + '\n\n';
+
+  contextCache = { text: context, expiresAt: now + 60_000 }; // cache 60 detik
 
   return context;
 }
@@ -95,7 +115,11 @@ ${context}`;
         },
         body: JSON.stringify({
           system_instruction: { parts: [{ text: systemPrompt }] },
-          contents
+          contents,
+          generationConfig: {
+            maxOutputTokens: 500, // batasi panjang jawaban -- lebih cepat & tidak bertele-tele
+            temperature: 0.4
+          }
         })
       }
     );
