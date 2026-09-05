@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from 'react';
 import { api } from '../api/client';
 import { renderChatText } from '../utils/renderChatText';
+import { SiBiMaText } from './BrandWordmark';
 
 const QUICK_PROMPTS = [
   'Jadwal pengaspalan hotmix minggu ini?',
@@ -72,7 +73,7 @@ export default function ChatbotWidget() {
                 </svg>
               </div>
               <div>
-                <div style={styles.title}>Tanya Si BiMa AI</div>
+                <div style={styles.title}>Tanya <SiBiMaText /> AI</div>
                 <div style={styles.statusRow}>
                   <span style={styles.onlineDot} />
                   <span style={styles.statusText}>Asisten Digital DPUPR</span>
@@ -168,7 +169,7 @@ export default function ChatbotWidget() {
             <svg width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2.2" viewBox="0 0 24 24">
               <path d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>
-            <span style={styles.fabText}>Tanya Si BiMa</span>
+            <span style={styles.fabText}>Tanya <SiBiMaText /></span>
           </div>
         )}
       </button>
