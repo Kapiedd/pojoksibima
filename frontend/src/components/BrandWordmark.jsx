@@ -8,7 +8,7 @@ export function SiBiMaText() {
   // ukuran huruf, semakin tebal juga garisnya kelihatan dibanding huruf lain
   // di sekitarnya yang ukurannya normal. Menurunkan fontWeight di sini
   // menyeimbangkan itu supaya ketebalannya terasa konsisten.
-  const bigLetterStyle = { fontSize: '1.35em', lineHeight: 1, fontWeight: 400 };
+  const bigLetterStyle = { fontSize: '1.35em', lineHeight: 1, fontWeight: 505 };
   return (
     <>Si BiM<span style={bigLetterStyle}>a</span></>
   );
