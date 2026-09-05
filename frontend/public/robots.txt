@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://pojok-sibima-dpupr.up.railway.app/sitemap.xml
