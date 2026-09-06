@@ -1,20 +1,58 @@
 const supabase = require('../config/supabase');
 
-// Info statis tentang DPUPR -- SESUAIKAN dengan info asli dari ayah/instansi.
-// Ini dipakai sebagai konteks dasar yang selalu dikirim ke AI, supaya chatbot
-// bisa jawab pertanyaan umum (visi misi, kontak, dll) walau datanya tidak ada
-// di database.
+// Info statis tentang DPUPR -- dipakai sebagai konteks dasar yang selalu
+// dikirim ke AI, supaya chatbot bisa jawab pertanyaan umum (visi misi,
+// struktur organisasi, alamat, kontak, dll) walau datanya tidak ada di
+// database. Sumber teks disamakan persis dengan yang tampil di halaman
+// publik (VisiMisiSection.jsx, StrukturOrganisasiSection.jsx, KontakSection.jsx)
+// supaya jawaban chatbot tidak pernah beda/kontradiksi dengan isi website.
 const STATIC_CONTEXT = `
-Nama instansi: Dinas Pekerjaan Umum dan Penataan Ruang (DPUPR)
+Nama instansi: Dinas Pekerjaan Umum dan Penataan Ruang (DPUPR) Kabupaten Banjarnegara
 Sistem: Pojok Si BiMa (Sistem Informasi Bina Marga)
-Kontak:
+
+ALAMAT KANTOR:
+Jl. Mayor Jenderal DI Panjaitan No.13, Kutabanjarnegara, Kec. Banjarnegara,
+Kab. Banjarnegara, Jawa Tengah 53418
+
+JAM OPERASIONAL:
+- Senin-Kamis: 07.30-16.00 WIB
+- Jumat: 07.30-14.30 WIB
+- Sabtu, Minggu, dan hari libur nasional: tutup
+
+KONTAK:
 - WhatsApp: 082241093330
 - Instagram: @pojok.sibima
 - Email: sibima.dpuprbna@gmail.com
 
-CATATAN UNTUK DEVELOPER: lengkapi bagian Visi Misi, Struktur Organisasi,
-Alamat Kedudukan, dan Maklumat Pelayanan di sini setelah dapat teks aslinya
-dari instansi, supaya chatbot bisa menjawab pertanyaan seputar itu juga.
+VISI (RPJPD 2005-2025 Kabupaten Banjarnegara, Periode 4/RPD 2023-2026):
+"Banjarnegara Maju Berbasis Pertanian"
+
+MISI (Misi ke-4, yang terkait tugas pokok dan fungsi DPUPR):
+Mewujudkan kuantitas dan kualitas sarana dan prasarana dasar yang ditandai
+dengan meningkatnya infrastruktur wilayah yang andal, sehingga dapat
+meningkatkan aksesibilitas dan mobilitas. Misi ini didukung oleh
+faktor-faktor yang mendorong berkembangnya aktivitas produksi, membuka
+isolasi daerah, membentuk kawasan pertumbuhan baru, meningkatkan perumahan
+rakyat layak huni, pemerataan prasarana-sarana pelayanan dasar di wilayah
+perdesaan dan perkotaan, serta meningkatkan jaringan irigasi dan bendung
+untuk ketahanan pangan.
+
+STRUKTUR ORGANISASI DPUPR (Tahun 2024, berdasarkan Perbup Banjarnegara No.36/2022):
+- Kepala Dinas: Yusuf Winarsono, ST.MT
+- Sekretaris Dinas: M. Arqom Al Fahmi, ST, M.Si
+  - Kasubbag Perencanaan dan Keuangan: Intihatun Munawaroh, SE.
+  - Kasubbag Umum dan Kepegawaian: Esti Agustini, S.Si
+- Bidang Bangunan Gedung -- Kepala: Resiati Widiastuti, ST
+- Bidang Bina Marga -- Kepala: Hermawan Tutut Indarjo, ST
+- Bidang Pengelolaan Sumber Daya Air -- Kepala: Suseno Adji Hartono, ST
+- Bidang Tata Ruang -- Kepala: Fajar Mulato, ST.MT
+- UPTD Wilayah I sampai V, serta UPTD Perlengkapan & Perbengkelan, masing-masing
+  dikepalai oleh pejabat UPTD di wilayah kerjanya masing-masing.
+(Detail lengkap nama pejabat tiap sub-bidang dan NIP tersedia di halaman
+"Struktur Organisasi" pada website ini.)
+
+CATATAN: Alamat Kedudukan detail dan Maklumat Pelayanan masih dalam proses
+pelengkapan data resmi dari instansi.
 `.trim();
 
 // Ambil semua data yang relevan buat chatbot SEKALIGUS setiap kali ada
