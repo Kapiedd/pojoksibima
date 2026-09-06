@@ -68,8 +68,8 @@ export default function ChatbotWidget() {
             <div style={styles.headerLeft}>
               <div style={styles.avatar}>
                 <svg width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                  <path d="M12 2a2 2 0 012 2v2a2 2 0 01-2 2 2 2 0 01-2-2V4a2 2 0 012-2zM4 11a2 2 0 012-2h12a2 2 0 012 2v7a2 2 0 01-2 2H6a2 2 0 01-2-2v-7z"/>
-                  <path d="M9 16v-2m6 2v-2"/>
+                  <path d="M12 2a2 2 0 012 2v2a2 2 0 01-2 2 2 2 0 01-2-2V4a2 2 0 012-2zM4 11a2 2 0 012-2h12a2 2 0 012 2v7a2 2 0 01-2 2H6a2 2 0 01-2-2v-7z" />
+                  <path d="M9 16v-2m6 2v-2" />
                 </svg>
               </div>
               <div>
@@ -145,7 +145,7 @@ export default function ChatbotWidget() {
               aria-label="Kirim"
             >
               <svg width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2.2" viewBox="0 0 24 24">
-                <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/>
+                <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z" />
               </svg>
             </button>
           </form>
@@ -167,7 +167,7 @@ export default function ChatbotWidget() {
         ) : (
           <div style={styles.fabInner}>
             <svg width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2.2" viewBox="0 0 24 24">
-              <path d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" strokeLinecap="round" strokeLinejoin="round"/>
+              <path d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
             <span style={styles.fabText}>Tanya <SiBiMaText /></span>
           </div>
@@ -180,7 +180,7 @@ export default function ChatbotWidget() {
 const styles = {
   fab: {
     position: 'fixed',
-    bottom: 24,
+    bottom: 35,
     right: 24,
     background: 'linear-gradient(135deg, var(--color-navy) 0%, #152A4A 100%)',
     color: 'var(--color-gold-light)',
@@ -216,7 +216,7 @@ const styles = {
   },
   panel: {
     position: 'fixed',
-    bottom: 86,
+    bottom: 97,
     right: 24,
     width: 380,
     maxWidth: 'calc(100vw - 48px)',
