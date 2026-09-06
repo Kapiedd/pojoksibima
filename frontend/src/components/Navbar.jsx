@@ -12,7 +12,6 @@ const links = [
   { href: '/paket-kontrak', label: 'Paket Berkontrak Bina Marga', kind: 'page' },
   { href: '/jadwal-aspal',  label: 'Jadwal Hotmix',               kind: 'page' },
   { href: '/dokumentasi',   label: 'Dokumentasi',                 kind: 'page' },
-  { href: '/#kontak',       label: 'Kontak',                      kind: 'anchor' },
 ];
 
 const ADMIN_URL = import.meta.env.VITE_ADMIN_URL || 'http://localhost:5173';

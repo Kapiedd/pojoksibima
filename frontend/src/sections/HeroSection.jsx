@@ -76,6 +76,16 @@ export default function HeroSection() {
     totalKunjungan: 0
   });
 
+  // "Info Hari Ini" -- digabung langsung ke dalam Hero (bukan section
+  // terpisah lagi) supaya orang langsung lihat begitu buka web, dan warnanya
+  // menyatu dengan tema gelap Hero. Ada 2 hal yang ditonjolkan: jadwal aspal
+  // yang sedang berlangsung HARI INI, dan dokumentasi yang diunggah HARI INI.
+  const [highlight, setHighlight] = useState({
+    loading: true,
+    jumlahJadwal: 0,
+    dokumentasiHariIni: null, // null = belum ada, object = ada 1 foto terbaru hari ini
+  });
+
   useEffect(() => {
     Promise.all([
       api.getPaketKontrak().catch(() => ({ data: [] })),
@@ -88,6 +98,25 @@ export default function HeroSection() {
         totalJadwal: (jadwal.data || []).length,
         totalDokumentasi: (dokumentasi.data || []).length,
         totalKunjungan: visitor.total_kunjungan || 0
+      });
+
+      const todayStr = new Date().toISOString().slice(0, 10); // YYYY-MM-DD
+
+      const jadwalBerlangsung = (jadwal.data || []).filter((item) => {
+        if (!item.tanggal_mulai) return false;
+        const mulai = item.tanggal_mulai.slice(0, 10);
+        const selesai = (item.tanggal_selesai || item.tanggal_mulai).slice(0, 10);
+        return todayStr >= mulai && todayStr <= selesai;
+      });
+
+      const dokumentasiHariIni = (dokumentasi.data || []).find(
+        (d) => d.tanggal_kegiatan && d.tanggal_kegiatan.slice(0, 10) === todayStr
+      ) || null;
+
+      setHighlight({
+        loading: false,
+        jumlahJadwal: jadwalBerlangsung.length,
+        dokumentasiHariIni,
       });
     });
   }, []);
@@ -144,6 +173,58 @@ export default function HeroSection() {
           </div>
         </div>
 
+        {/* Highlight Hari Ini -- Jadwal & Dokumentasi -- tetap satu warna
+            dengan Hero, jadi terasa menyatu, bukan strip terpisah */}
+        <div className="animate-fade-up-delay-1" style={styles.highlightGrid}>
+          <a href="/jadwal-aspal" style={styles.highlightCard} className="highlight-card">
+            <div style={styles.highlightIconWrap}>
+              <svg width="26" height="26" fill="none" stroke="currentColor" strokeWidth="1.8" viewBox="0 0 24 24">
+                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
+              </svg>
+            </div>
+            <div style={{ flex: 1 }}>
+              <div style={styles.highlightLabel}>Jadwal Hari Ini</div>
+              {highlight.loading ? (
+                <div style={styles.highlightText}>Memuat...</div>
+              ) : highlight.jumlahJadwal > 0 ? (
+                <div style={styles.highlightText}>
+                  <strong style={styles.highlightNum}>{highlight.jumlahJadwal}</strong> jadwal gelaran aspal sedang berlangsung
+                </div>
+              ) : (
+                <div style={styles.highlightText}>Tidak ada jadwal aspal yang berlangsung hari ini</div>
+              )}
+            </div>
+            <span style={styles.highlightArrow}>&rarr;</span>
+          </a>
+
+          <a href="/dokumentasi" style={styles.highlightCard} className="highlight-card">
+            {highlight.dokumentasiHariIni ? (
+              <img
+                src={highlight.dokumentasiHariIni.file_url}
+                alt={highlight.dokumentasiHariIni.judul}
+                style={styles.highlightThumb}
+              />
+            ) : (
+              <div style={styles.highlightIconWrap}>
+                <svg width="26" height="26" fill="none" stroke="currentColor" strokeWidth="1.8" viewBox="0 0 24 24">
+                  <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/>
+                </svg>
+              </div>
+            )}
+            <div style={{ flex: 1 }}>
+              <div style={styles.highlightLabel}>Dokumentasi Hari Ini</div>
+              {highlight.loading ? (
+                <div style={styles.highlightText}>Memuat...</div>
+              ) : highlight.dokumentasiHariIni ? (
+                <div style={styles.highlightText}>{highlight.dokumentasiHariIni.judul}</div>
+              ) : (
+                <div style={styles.highlightText}>Belum ada dokumentasi yang diunggah hari ini</div>
+              )}
+            </div>
+            <span style={styles.highlightArrow}>&rarr;</span>
+          </a>
+        </div>
+
         {/* Stats */}
         <div className="animate-fade-up-delay-2" style={styles.stats}>
           <div style={styles.statsLabel}>Layanan Transparansi Publik</div>
@@ -165,6 +246,14 @@ export default function HeroSection() {
           <path d="M0,40 C360,0 1080,60 1440,20 L1440,60 L0,60 Z" fill="var(--color-bg)" />
         </svg>
       </div>
+
+      <style>{`
+        .highlight-card:hover {
+          background: rgba(255,255,255,0.1);
+          border-color: var(--color-gold-light);
+          transform: translateY(-2px);
+        }
+      `}</style>
     </section>
   );
 }
@@ -271,6 +360,63 @@ const styles = {
   },
   stats: {
     paddingBottom: 64,
+  },
+  highlightGrid: {
+    display: 'grid',
+    gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+    gap: 14,
+  },
+  highlightCard: {
+    display: 'flex',
+    alignItems: 'center',
+    gap: 16,
+    background: 'rgba(255,255,255,0.06)',
+    border: '1px solid rgba(201,162,39,0.25)',
+    borderRadius: 'var(--radius-lg)',
+    padding: '18px 20px',
+    textDecoration: 'none',
+    transition: 'background 0.22s, border-color 0.22s, transform 0.22s',
+  },
+  highlightIconWrap: {
+    flexShrink: 0,
+    width: 48,
+    height: 48,
+    borderRadius: 10,
+    background: 'rgba(201,162,39,0.15)',
+    color: 'var(--color-gold-light)',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  highlightThumb: {
+    flexShrink: 0,
+    width: 48,
+    height: 48,
+    borderRadius: 10,
+    objectFit: 'cover',
+  },
+  highlightLabel: {
+    color: 'var(--color-gold-light)',
+    fontSize: '0.72rem',
+    fontWeight: 700,
+    textTransform: 'uppercase',
+    letterSpacing: '0.06em',
+    marginBottom: 4,
+  },
+  highlightText: {
+    color: '#FFFFFF',
+    fontSize: '0.98rem',
+    fontWeight: 500,
+    lineHeight: 1.4,
+  },
+  highlightNum: {
+    color: 'var(--color-gold-light)',
+    fontSize: '1.15rem',
+  },
+  highlightArrow: {
+    color: 'rgba(255,255,255,0.4)',
+    fontSize: '1.3rem',
+    flexShrink: 0,
   },
   statsLabel: {
     color: 'var(--color-gold-light)',
