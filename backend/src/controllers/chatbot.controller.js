@@ -155,7 +155,7 @@ ${context}`;
           system_instruction: { parts: [{ text: systemPrompt }] },
           contents,
           generationConfig: {
-            maxOutputTokens: 500, // batasi panjang jawaban -- lebih cepat & tidak bertele-tele
+            maxOutputTokens: 2048, // dinaikkan dari 500 -- supaya jawaban tidak terpotong saat perlu menjelaskan detail/daftar panjang
             temperature: 0.4
           }
         })
