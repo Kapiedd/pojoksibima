@@ -180,8 +180,8 @@ export default function ChatbotWidget() {
 const styles = {
   fab: {
     position: 'fixed',
-    bottom: 75,
-    right: 24,
+    bottom: 24,
+    left: 24,
     background: 'linear-gradient(135deg, var(--color-navy) 0%, #152A4A 100%)',
     color: 'var(--color-gold-light)',
     border: '1.5px solid rgba(212, 175, 55, 0.4)',
@@ -216,8 +216,8 @@ const styles = {
   },
   panel: {
     position: 'fixed',
-    bottom: 137,
-    right: 24,
+    bottom: 86,
+    left: 24,
     width: 380,
     maxWidth: 'calc(100vw - 48px)',
     height: 520,
