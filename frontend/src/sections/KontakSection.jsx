@@ -80,7 +80,7 @@ export default function KontakSection() {
           <div className="section-label">Layanan &amp; Lokasi</div>
           <h2>Hubungi Bina Marga DPUPR</h2>
           <p style={styles.subtitle}>
-            Salurkan pertanyaan, dan permohonan informasi teknis langsung bersama tim DPUPR Banjarnegara.
+            Salurkan pertanyaan dan permohonan informasi teknis langsung bersama tim DPUPR Banjarnegara.
           </p>
           <div className="batik-divider" style={{ margin: '14px auto 36px' }} />
         </div>
