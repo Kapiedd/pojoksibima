@@ -3,19 +3,27 @@ import PageLayout from '../components/PageLayout';
 import { api } from '../api/client';
 
 import HeroSection from '../sections/HeroSection';
+import InfoHariIniSection from '../sections/InfoHariIniSection';
 import AksesCepatSection from '../sections/AksesCepatSection';
-import TentangKamiSection from '../sections/TentangKamiSection';
-import PaketKontrakSection from '../sections/PaketKontrakSection';
-import JadwalAspalSection from '../sections/JadwalAspalSection';
-import BukuTamuSection from '../sections/BukuTamuSection';
-import DokumentasiSection from '../sections/DokumentasiSection';
+import TentangTeaserSection from '../sections/TentangTeaserSection';
 import KontakSection from '../sections/KontakSection';
+
+// STRUKTUR BERANDA (disepakati bareng klien/ayah, jangan diubah urutannya
+// tanpa didiskusikan lagi):
+//   1. Hero            -- sapaan/welcome
+//   2. Info Hari Ini    -- 1 baris info jadwal aspal yang berlangsung HARI INI
+//   3. Akses Cepat      -- kartu navigasi ke semua halaman detail (Manual paling atas)
+//   4. Tentang (cuplikan) -- teaser singkat + tombol "Selengkapnya" -> /tentang
+//   5. Kontak           -- tetap full di beranda
+//
+// SENGAJA TIDAK ADA di Beranda lagi (supaya beranda ringkas, cuma nampung
+// info "hari ini"): Paket Kontrak, Jadwal Aspal, Dokumentasi, dan Buku Tamu.
+// Keempatnya sekarang jadi halaman sendiri, diakses lewat Akses Cepat/Navbar:
+//   /paket-kontrak, /jadwal-aspal, /dokumentasi, /buku-tamu
 
 export default function Home() {
   useEffect(() => {
     // Catat kunjungan HANYA sekali per sesi browser (bukan tiap reload halaman).
-    // Pakai sessionStorage supaya reload/navigasi ulang di tab yang sama tidak
-    // menambah hitungan berkali-kali -- baru dihitung lagi kalau buka tab/sesi baru.
     const alreadyCounted = sessionStorage.getItem('dpupr_visit_counted');
     if (!alreadyCounted) {
       api.incrementVisitorCounter()
@@ -26,28 +34,10 @@ export default function Home() {
 
   return (
     <PageLayout>
-      {/* 1. Beranda Hero Section & Stats */}
       <HeroSection />
-
-      {/* 2. Akses Cepat Kartu Navigasi */}
+      <InfoHariIniSection />
       <AksesCepatSection />
-
-      {/* 3. Tentang Kami (Termasuk Visi Misi & Struktur Organisasi) */}
-      <TentangKamiSection />
-
-      {/* 4. Paket Kontrak Bina Marga (Tabel tanpa persentase progres) */}
-      <PaketKontrakSection />
-
-      {/* 5. Jadwal Aspal Hotmix (Tab Harian / Mingguan / Bulanan) */}
-      <JadwalAspalSection />
-
-      {/* 6. Buku Tamu & Aspirasi Publik */}
-      <BukuTamuSection />
-
-      {/* 7. Dokumentasi Kegiatan Lapangan */}
-      <DokumentasiSection />
-
-      {/* 8. Kontak & Lokasi Kantor DPUPR */}
+      <TentangTeaserSection />
       <KontakSection />
     </PageLayout>
   );

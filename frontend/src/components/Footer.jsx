@@ -4,11 +4,11 @@ const ADMIN_URL = import.meta.env.VITE_ADMIN_URL || 'http://localhost:5173';
 
 const navLinks = [
   { href: '/#beranda', label: 'Beranda' },
-  { href: '/#tentang', label: 'Tentang Kami' },
-  { href: '/#paket-kontrak', label: 'Paket Bina Marga' },
-  { href: '/#jadwal-aspal', label: 'Jadwal Hotmix' },
-  { href: '/#buku-tamu', label: 'Buku Tamu' },
-  { href: '/#dokumentasi', label: 'Dokumentasi' },
+  { href: '/tentang', label: 'Tentang Kami' },
+  { href: '/paket-kontrak', label: 'Paket Bina Marga' },
+  { href: '/jadwal-aspal', label: 'Jadwal Hotmix' },
+  { href: '/buku-tamu', label: 'Buku Tamu' },
+  { href: '/dokumentasi', label: 'Dokumentasi' },
   { href: '/#kontak', label: 'Kontak & Lokasi' },
 ];
 

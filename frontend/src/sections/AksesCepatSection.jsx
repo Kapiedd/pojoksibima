@@ -1,6 +1,17 @@
 const quickLinks = [
   {
-    href: '/#paket-kontrak',
+    href: '/manual',
+    icon: (
+      <svg width="28" height="28" fill="none" stroke="currentColor" strokeWidth="1.8" viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
+      </svg>
+    ),
+    title: 'Manual Si BiMa',
+    desc: 'Panduan lengkap pengoperasian dan cara membaca data pada portal informasi.',
+    color: '#1e4d8c',
+  },
+  {
+    href: '/paket-kontrak',
     icon: (
       <svg width="28" height="28" fill="none" stroke="currentColor" strokeWidth="1.8" viewBox="0 0 24 24">
         <path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" strokeLinecap="round" strokeLinejoin="round"/>
@@ -11,7 +22,7 @@ const quickLinks = [
     color: '#C9A227',
   },
   {
-    href: '/#jadwal-aspal',
+    href: '/jadwal-aspal',
     icon: (
       <svg width="28" height="28" fill="none" stroke="currentColor" strokeWidth="1.8" viewBox="0 0 24 24">
         <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
@@ -22,18 +33,7 @@ const quickLinks = [
     color: '#7A2E2E',
   },
   {
-    href: '/#buku-tamu',
-    icon: (
-      <svg width="28" height="28" fill="none" stroke="currentColor" strokeWidth="1.8" viewBox="0 0 24 24">
-        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
-      </svg>
-    ),
-    title: 'Buku Tamu',
-    desc: 'Kirim kritik, saran, maupun aspirasi perbaikan infrastruktur jalan.',
-    color: '#2E6B7A',
-  },
-  {
-    href: '/#dokumentasi',
+    href: '/dokumentasi',
     icon: (
       <svg width="28" height="28" fill="none" stroke="currentColor" strokeWidth="1.8" viewBox="0 0 24 24">
         <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/>
@@ -42,6 +42,17 @@ const quickLinks = [
     title: 'Dokumentasi',
     desc: 'Galeri foto dan video bukti pengerjaan infrastruktur langsung dari lapangan.',
     color: '#3d6b32',
+  },
+  {
+    href: '/buku-tamu',
+    icon: (
+      <svg width="28" height="28" fill="none" stroke="currentColor" strokeWidth="1.8" viewBox="0 0 24 24">
+        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+      </svg>
+    ),
+    title: 'Buku Tamu',
+    desc: 'Kirim kritik, saran, maupun aspirasi perbaikan infrastruktur jalan.',
+    color: '#2E6B7A',
   },
   {
     href: '/#kontak',
@@ -53,17 +64,6 @@ const quickLinks = [
     title: 'Kontak',
     desc: 'Hubungi tim teknis Bina Marga untuk koordinasi atau pengaduan darurat.',
     color: '#5c3d8a',
-  },
-  {
-    href: '/manual',
-    icon: (
-      <svg width="28" height="28" fill="none" stroke="currentColor" strokeWidth="1.8" viewBox="0 0 24 24">
-        <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
-      </svg>
-    ),
-    title: 'Manual Si BiMa',
-    desc: 'Panduan lengkap pengoperasian dan cara membaca data pada portal informasi.',
-    color: '#1e4d8c',
   },
 ];
 

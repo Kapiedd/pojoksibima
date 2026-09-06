@@ -138,7 +138,7 @@ export default function HeroSection() {
                 <path d="M5 12h14M12 5l7 7-7 7" strokeLinecap="round" strokeLinejoin="round"/>
               </svg>
             </a>
-            <a href="/#buku-tamu" className="btn btn-outline" style={styles.ctaSecondary}>
+            <a href="/buku-tamu" className="btn btn-outline" style={styles.ctaSecondary}>
               Isi Buku Tamu
             </a>
           </div>
