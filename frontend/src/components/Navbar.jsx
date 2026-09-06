@@ -8,10 +8,10 @@ import BrandWordmark from './BrandWordmark';
 // masih genuinely ada di halaman utama.
 const links = [
   { href: '/#beranda',      label: 'Beranda',                    kind: 'anchor' },
-  { href: '/tentang',       label: 'Tentang',                    kind: 'page' },
   { href: '/paket-kontrak', label: 'Paket Berkontrak Bina Marga', kind: 'page' },
   { href: '/jadwal-aspal',  label: 'Jadwal Hotmix',               kind: 'page' },
   { href: '/dokumentasi',   label: 'Dokumentasi',                 kind: 'page' },
+  { href: '/tentang',       label: 'Tentang',                    kind: 'page' },
 ];
 
 const ADMIN_URL = import.meta.env.VITE_ADMIN_URL || 'http://localhost:5173';

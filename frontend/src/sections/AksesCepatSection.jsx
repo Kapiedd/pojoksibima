@@ -55,14 +55,14 @@ const quickLinks = [
     color: '#2E6B7A',
   },
   {
-    href: '/#kontak',
+    href: '/tentang',
     icon: (
       <svg width="28" height="28" fill="none" stroke="currentColor" strokeWidth="1.8" viewBox="0 0 24 24">
-        <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10.8 19.79 19.79 0 01.22 2.18 2 2 0 012.18 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.91a16 16 0 006.18 6.18l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
+        <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" strokeLinecap="round" strokeLinejoin="round"/>
       </svg>
     ),
-    title: 'Kontak',
-    desc: 'Hubungi tim teknis Bina Marga untuk koordinasi atau pengaduan darurat.',
+    title: 'Tentang Kami',
+    desc: 'Kenali visi, misi, dan struktur organisasi lengkap DPUPR Kabupaten Banjarnegara.',
     color: '#5c3d8a',
   },
 ];
