@@ -107,6 +107,27 @@ pelengkapan data resmi dari instansi. Informasi profil Kabupaten Banjarnegara
 di atas bersifat umum (dari sumber resmi pemerintah); untuk data terkini dan
 paling akurat, sarankan pengunjung mengecek langsung ke website resmi
 dpupr.banjarnegarakab.go.id atau menghubungi kontak yang tersedia.
+
+CARA MELAPORKAN JALAN/JEMBATAN RUSAK ATAU MENYAMPAIKAN ASPIRASI:
+Pengunjung dapat melaporkan kondisi jalan/jembatan rusak, memberikan
+kritik, saran, maupun aspirasi lain terkait infrastruktur melalui fitur
+"Buku Tamu" yang tersedia di website ini (bisa diakses lewat menu Akses
+Cepat atau tombol "Isi Buku Tamu"). Isian tersebut akan diterima dan
+ditindaklanjuti oleh admin DPUPR. Untuk laporan yang sifatnya mendesak/
+darurat, sarankan pengunjung menghubungi kontak WhatsApp resmi yang
+tersedia di atas.
+
+PETA HALAMAN WEBSITE INI (gunakan untuk mengarahkan pengunjung kalau
+mereka bingung mencari sesuatu):
+- Beranda (/) -- sapaan, info jadwal & dokumentasi hari ini, akses cepat, kontak
+- Tentang (/tentang) -- profil lengkap, visi misi, dan struktur organisasi DPUPR
+- Paket Berkontrak Bina Marga (/paket-kontrak) -- daftar lengkap semua paket kontrak
+- Jadwal Hotmix (/jadwal-aspal) -- daftar lengkap semua jadwal gelaran aspal
+- Dokumentasi (/dokumentasi) -- galeri lengkap semua foto kegiatan lapangan
+- Buku Tamu (/buku-tamu) -- form untuk mengisi kunjungan, laporan, atau aspirasi
+- Manual Si BiMa (/manual) -- panduan cara menggunakan seluruh fitur website ini
+Jika pengunjung bertanya "bagaimana cara pakai website ini" atau bingung
+mencari fitur tertentu, arahkan ke halaman yang relevan di atas.
 `.trim();
 
 // Ambil semua data yang relevan buat chatbot SEKALIGUS setiap kali ada
@@ -133,7 +154,7 @@ async function buildContext() {
     return contextCache.text;
   }
 
-  const [{ data: jadwal }, { data: paket }] = await Promise.all([
+  const [{ data: jadwal }, { data: paket }, { data: dokumentasi }] = await Promise.all([
     supabase
       .from('jadwal_aspal')
       .select('nama_paket, tanggal_mulai, tanggal_selesai, status, lokasi_maps_url')
@@ -142,13 +163,25 @@ async function buildContext() {
     supabase
       .from('paket_kontrak')
       .select('nama_paket, kategori, lokasi, status, tahun')
-      .limit(100)
+      .limit(100),
+    supabase
+      .from('dokumen')
+      .select('judul, kategori, lokasi, keterangan, tanggal_kegiatan')
+      .order('tanggal_kegiatan', { ascending: false })
+      .limit(30)
   ]);
+
+  const todayFormatted = new Date().toLocaleDateString('id-ID', {
+    weekday: 'long', day: 'numeric', month: 'long', year: 'numeric'
+  });
+  const todayISO = new Date().toISOString().slice(0, 10);
 
   const context =
     STATIC_CONTEXT + '\n\n' +
+    `TANGGAL HARI INI: ${todayFormatted} (${todayISO}). Gunakan tanggal ini sebagai acuan kalau pengunjung bertanya soal "hari ini", "minggu ini", "bulan ini", atau "sedang berlangsung" -- bandingkan dengan kolom tanggal_mulai dan tanggal_selesai pada data jadwal aspal di bawah.\n\n` +
     'DATA JADWAL GELARAN ASPAL:\n' + JSON.stringify(jadwal, null, 2) + '\n\n' +
-    'DATA PAKET KONTRAK BINA MARGA:\n' + JSON.stringify(paket, null, 2) + '\n\n';
+    'DATA PAKET KONTRAK BINA MARGA:\n' + JSON.stringify(paket, null, 2) + '\n\n' +
+    'DATA DOKUMENTASI KEGIATAN (foto/laporan progres lapangan):\n' + JSON.stringify(dokumentasi, null, 2) + '\n\n';
 
   contextCache = { text: context, expiresAt: now + 60_000 }; // cache 60 detik
 
