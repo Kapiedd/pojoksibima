@@ -51,8 +51,62 @@ STRUKTUR ORGANISASI DPUPR (Tahun 2024, berdasarkan Perbup Banjarnegara No.36/202
 (Detail lengkap nama pejabat tiap sub-bidang dan NIP tersedia di halaman
 "Struktur Organisasi" pada website ini.)
 
+TUGAS POKOK DPUPR (berdasarkan Perbup Banjarnegara No.36/2022):
+Melaksanakan urusan pemerintahan di bidang Pekerjaan Umum dan Penataan
+Ruang yang menjadi kewenangan daerah, mencakup sub urusan bangunan gedung,
+penataan bangunan dan lingkungannya, jalan, jasa konstruksi, serta penataan
+ruang.
+
+FUNGSI DPUPR:
+1. Perumusan kebijakan di bidang bangunan gedung, bina marga, pengelolaan
+   sumber daya air, dan tata ruang.
+2. Pelaksanaan koordinasi dan pelaksanaan kebijakan di keempat bidang tersebut.
+3. Pembinaan dan fasilitasi kebijakan di keempat bidang tersebut.
+4. Pemantauan, evaluasi, dan pelaporan di keempat bidang tersebut.
+5. Pelaksanaan fungsi kesekretariatan dinas dan pengendalian tugas UPTD.
+
+TUGAS & FUNGSI KHUSUS BIDANG BINA MARGA (fokus utama website ini):
+Bidang Bina Marga bertugas melakukan perencanaan, perumusan, koordinasi,
+pelaksanaan, pembinaan, fasilitasi, pemantauan, evaluasi, dan pelaporan
+kebijakan di bidang:
+- Penyelenggaraan jalan kabupaten
+- Peningkatan jalan dan jembatan
+- Pemeliharaan jalan dan jembatan
+Bidang ini terdiri dari 2 seksi: Seksi Peningkatan Jalan dan Jembatan, serta
+Seksi Pemeliharaan Jalan dan Jembatan. Data Paket Kontrak dan Jadwal
+Gelaran Aspal yang ditampilkan di website ini adalah hasil kerja Bidang
+Bina Marga.
+
+CATATAN KINERJA BINA MARGA (RENSTRA DPUPR 2023-2026, data terakhir 2022):
+Persentase jalan kabupaten dalam kondisi baik dan berkualitas sekitar 81%,
+dengan target terus meningkat setiap tahun melalui kegiatan pembangunan,
+rekonstruksi, dan pemeliharaan jalan dan jembatan secara berimbang.
+Tantangan utama yang dihadapi antara lain: belum optimalnya sarana dan
+prasarana kebinamargaan, belum seluruh ruas jalan kabupaten dalam kondisi
+baik, serta keterbatasan SDM untuk inspeksi dan pemeliharaan jalan.
+
+PROFIL UMUM KABUPATEN BANJARNEGARA:
+- Provinsi: Jawa Tengah (bagian barat, jalur pegunungan)
+- Luas wilayah: sekitar 106.971 hektar (kurang lebih 3,1% dari luas Provinsi
+  Jawa Tengah)
+- Wilayah administratif: 20 kecamatan, 266 desa, dan 12 kelurahan
+- Kecamatan terluas: Punggelan; kecamatan tersempit: Purwareja Klampok
+- Jumlah penduduk: sekitar 1 juta jiwa (data bervariasi tiap tahun sensus/proyeksi)
+- Batas wilayah: utara berbatasan dengan Kabupaten Pekalongan dan Batang,
+  timur dengan Kabupaten Wonosobo, selatan dengan Kabupaten Kebumen, barat
+  dengan Kabupaten Purbalingga dan Banyumas
+- Topografi: bervariasi dari dataran rendah hingga pegunungan (sebagian
+  wilayah berada di atas 1.000 meter di atas permukaan laut), beriklim
+  tropis dengan musim kemarau dan hujan
+- Sektor unggulan: pertanian, industri, dan pariwisata
+- Visi Kabupaten Banjarnegara (sejalan dengan visi DPUPR di atas):
+  "Banjarnegara Maju Berbasis Pertanian"
+
 CATATAN: Alamat Kedudukan detail dan Maklumat Pelayanan masih dalam proses
-pelengkapan data resmi dari instansi.
+pelengkapan data resmi dari instansi. Informasi profil Kabupaten Banjarnegara
+di atas bersifat umum (dari sumber resmi pemerintah); untuk data terkini dan
+paling akurat, sarankan pengunjung mengecek langsung ke website resmi
+dpupr.banjarnegarakab.go.id atau menghubungi kontak yang tersedia.
 `.trim();
 
 // Ambil semua data yang relevan buat chatbot SEKALIGUS setiap kali ada
