@@ -1,0 +1,12 @@
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+
+  # Jangan redirect kalau memang file/foldernya beneran ada (misal gambar, JS, CSS)
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+
+  # Selain itu, semua route (misal /jadwal-aspal, /manual, /dokumentasi)
+  # diarahkan ke index.html, biar React Router yang urus routing-nya
+  RewriteRule . /index.html [L]
+</IfModule>
